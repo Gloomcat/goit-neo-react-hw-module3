@@ -3,7 +3,7 @@ import css from './Contact.module.css';
 import { IoPerson } from 'react-icons/io5';
 import { FaPhoneAlt } from 'react-icons/fa';
 
-const Contact = ({ id, name, phone, onDelete }) => {
+const Contact = ({ id, name, number, onDelete }) => {
   return (
     <div className={css['contact']}>
       <ul>
@@ -13,7 +13,7 @@ const Contact = ({ id, name, phone, onDelete }) => {
         </li>
         <li>
           <FaPhoneAlt size={18} />
-          <p>{phone}</p>
+          <p>{number}</p>
         </li>
       </ul>
       <button

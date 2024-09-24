@@ -12,13 +12,22 @@ import { nanoid } from 'nanoid';
 
 const App = () => {
   const [contacts, setContacts] = useState(() => {
-    return initialContacts.map(contact => {
-      return {
-        ...contact,
-        id: nanoid(),
-      };
-    });
+    let contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (!contacts) {
+      contacts = initialContacts.map(contact => {
+        return {
+          ...contact,
+          id: nanoid(),
+        };
+      });
+    }
+
+    return contacts;
   });
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const [filter, setFilter] = useState('');
 
@@ -41,7 +50,7 @@ const App = () => {
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAdd={addContact} />
       <SearchBox onFilter={setFilter} />
       <ContactList contacts={visibleContacts} onDelete={deleteContact} />
     </div>

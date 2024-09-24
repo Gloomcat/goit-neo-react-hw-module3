@@ -17,3 +17,7 @@
   align-items: center;
   gap: 10px;
 }
+
+.contact button {
+  padding: 5px;
+}
